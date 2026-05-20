@@ -21,21 +21,12 @@ File sizes tested: 1 KB, 100 KB, 1 MB, 10 MB, 100 MB (configurable).
 
 ![Architecture Diagram](diagrams/architecture.png)
 
-```
-┌───────────────────────────────────────────────────────────────┐
-│                         AWS Account                            │
-│                                                                │
-│  ┌──────────────────────┐      ┌──────────────────────────┐  │
-│  │     S3 Bucket        │◄────►│     EC2 Instance         │  │
-│  │  · Versioning        │      │     t3.medium (default)  │  │
-│  │  · SSE-KMS           │      │     Amazon Linux 2023     │  │
-│  │  · Block Public      │      │                          │  │
-│  │    Access            │      │     ├─ AWS CLI v2       │  │
-│  └──────────────────────┘      │     ├─ s3fs-fuse v1.97   │  │
-│           ▲                    │     └─ S3 Files (mount) │  │
-│           └────── IAM Role (ec2-s3-role) ──────────────────┘ │
-└───────────────────────────────────────────────────────────────┘
-```
+Every component has a specific role:
+* `S3 Bucket` Object store with versioning enabled, SSE-KMS encryption enabled and public access blocked.
+* `EC2 instance` Automatically runs the benchmark on startup.
+* `IAM role` Contains minimum privilege policies, limiting the operations with the S3 Bucket.
+* `S3 Files Mount Target` High performance NFS endpoint used to connect the EC2 instance to the S3 Bucket.
+
 
 ## Quick Start
 
