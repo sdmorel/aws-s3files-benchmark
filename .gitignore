@@ -1,0 +1,29 @@
+# Terraform/OpenTofu
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+*.tfvars
+*.auto.tfvars
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Benchmark results (local copies)
+benchmark-results/
+*.csv
+*.log
+
+# SSH keys
+*.pem
+*.key
+.env
+.qwen/

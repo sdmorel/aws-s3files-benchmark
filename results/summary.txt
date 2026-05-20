@@ -1,0 +1,25 @@
+==========================================================
+S3 BENCHMARK SUMMARY REPORT
+==========================================================
+
+Test Configuration:
+- Bucket: <BUCKET_NAME>
+- Region: eu-south-2
+- File Sizes: 1KB 100KB 1MB 10MB
+- Files per Size: 10
+- S3 FUSE Enabled: true
+- S3 Files Enabled: true
+
+Results saved to: /root/benchmark-results/results.csv
+fio JSON logs saved to: /root/benchmark-results/fio_*.json
+
+Commands:
+- View CSV: cat /root/benchmark-results/results.csv
+- View summary: cat /root/benchmark-results/summary.txt
+- View full log: cat /root/benchmark-results/benchmark.log
+- View install log: cat /root/benchmark-results/install.log
+
+Download results:
+  scp -i your-key.pem root@<INSTANCE_IP>:/root/benchmark-results/* ./
+
+==========================================================

@@ -1,0 +1,198 @@
+============================================================
+Starting S3 Benchmark at 2026-05-05 07:50:19 UTC
+============================================================
+Bucket: <BUCKET_NAME>
+Region: eu-south-2
+File Sizes: 1KB 100KB 1MB 10MB
+Files per Size: 10
+S3 FUSE Enabled: true
+S3 Files Enabled: true
+============================================================
+
+[1/6] Installing dependencies...
+AWS CLI: aws-cli/2.33.15 Python/3.9.25 Linux/6.18.20-20.229.amzn2023.x86_64 source/x86_64.amzn.2023
+fio version: fio-3.32
+jq version: jq-1.7.1
+<ACCOUNT_ID>	arn:aws:sts::<ACCOUNT_ID>:assumed-role/<BUCKET_NAME>-ec2-s3-role/<INSTANCE_ID>	<IAM_ROLE_UNIQUE_ID>:<INSTANCE_ID>
+
+[2/6] Initializing results...
+
+[3/6] Setting up S3 Files...
+S3 Files file system and mount target should be created by Terraform
+Attempting to mount existing file system using mount-s3...
+File System ID: <FS_ID>
+Mounting S3 Files using /usr/sbin/mount.s3files...
+S3 Files mount successful
+
+[4/6] Setting up S3 FUSE...
+Installing s3fs-fuse dependencies...
+Mounting S3 FUSE...
+s3fs: Not found access key/secret key in passwd file.
+============================================================
+Starting S3 Benchmark at 2026-05-05 07:59:50 UTC
+============================================================
+Bucket: <BUCKET_NAME>
+Region: eu-south-2
+File Sizes: 1KB 100KB 1MB 10MB
+Files per Size: 10
+S3 FUSE Enabled: false
+S3 Files Enabled: true
+============================================================
+
+[1/6] Installing dependencies...
+AWS CLI: aws-cli/2.33.15 Python/3.9.25 Linux/6.18.20-20.229.amzn2023.x86_64 source/x86_64.amzn.2023
+fio version: fio-3.32
+jq version: jq-1.7.1
+<ACCOUNT_ID>	arn:aws:sts::<ACCOUNT_ID>:assumed-role/<BUCKET_NAME>-ec2-s3-role/<INSTANCE_ID>	<IAM_ROLE_UNIQUE_ID>:<INSTANCE_ID>
+
+[2/6] Initializing results...
+
+[3/6] Setting up S3 Files...
+S3 Files file system and mount target should be created by Terraform
+Attempting to mount existing file system using mount-s3...
+File System ID: <FS_ID>
+Mounting S3 Files using /usr/sbin/mount.s3files...
+/root/s3files-mount is already mounted, please run 'mount' command to verify
+S3 Files mount successful
+
+============================================================
+Running S3 Files Benchmarks
+============================================================
+
+--- S3 Files: File Size = 1KB ---
+  Running fio benchmarks for size 1KB...
+(standard_in) 1: syntax error
+  s3-files     | seq-read        | Size: 1KB    | BW: 0 MB/s | IOPS: 747.441752 | Lat: null us
+  s3-files     | seq-write       | Size: 1KB    | BW:  MB/s | IOPS:  | Lat: 0 us
+
+--- S3 Files: File Size = 100KB ---
+  Running fio benchmarks for size 100KB...
+(standard_in) 1: syntax error
+  s3-files     | seq-read        | Size: 100KB  | BW: .05 MB/s | IOPS: 521.331911 | Lat: null us
+  s3-files     | seq-write       | Size: 100KB  | BW:  MB/s | IOPS:  | Lat: 0 us
+
+--- S3 Files: File Size = 1MB ---
+  Running fio benchmarks for size 1MB...
+(standard_in) 1: syntax error
+  s3-files     | seq-read        | Size: 1MB    | BW: .10 MB/s | IOPS: 106.285829 | Lat: null us
+  s3-files     | seq-write       | Size: 1MB    | BW:  MB/s | IOPS:  | Lat: 0 us
+
+--- S3 Files: File Size = 10MB ---
+  Running fio benchmarks for size 10MB...
+(standard_in) 1: syntax error
+  s3-files     | seq-read        | Size: 10MB   | BW: .20 MB/s | IOPS: 20.259238 | Lat: null us
+  s3-files     | seq-write       | Size: 10MB   | BW:  MB/s | IOPS:  | Lat: 0 us
+
+[5/6] S3 FUSE benchmarks disabled, skipping...
+
+============================================================
+Running Native AWS S3 CLI Benchmarks
+============================================================
+
+--- Native S3 CLI: File Size = 1KB (1024 bytes) ---
+  Creating test file...
+  Testing UPLOAD...
+upload: ../../root/native-tests/test_1KB.dat to s3://<BUCKET_NAME>/native/test_1KB.dat
+  native-cli   | upload          | Size: 1KB    | BW: 0 MB/s | IOPS: 1 | Lat: 807 us
+  Testing STAT...
+  native-cli   | stat            | Size: 1KB    | BW: 0.00 MB/s | IOPS: 0 | Lat: 846 us
+  Testing DOWNLOAD...
+download: s3://<BUCKET_NAME>/native/test_1KB.dat to ../../root/native-tests/downloaded.dat
+  native-cli   | download        | Size: 1KB    | BW: 0 MB/s | IOPS: 0 | Lat: 856 us
+  Cleaning up...
+
+--- Native S3 CLI: File Size = 100KB (102400 bytes) ---
+  Creating test file...
+  Testing UPLOAD...
+upload: ../../root/native-tests/test_100KB.dat to s3://<BUCKET_NAME>/native/test_100KB.dat
+  native-cli   | upload          | Size: 100KB  | BW: 0 MB/s | IOPS: 1 | Lat: 802 us
+  Testing STAT...
+  native-cli   | stat            | Size: 100KB  | BW: 0.00 MB/s | IOPS: 0 | Lat: 759 us
+  Testing DOWNLOAD...
+download: s3://<BUCKET_NAME>/native/test_100KB.dat to ../../root/native-tests/downloaded.dat
+  native-cli   | download        | Size: 100KB  | BW: 0 MB/s | IOPS: 0 | Lat: 887 us
+  Cleaning up...
+
+--- Native S3 CLI: File Size = 1MB (1048576 bytes) ---
+  Creating test file...
+  Testing UPLOAD...
+upload: ../../root/native-tests/test_1MB.dat to s3://<BUCKET_NAME>/native/test_1MB.dat
+  native-cli   | upload          | Size: 1MB    | BW: .01 MB/s | IOPS: 1 | Lat: 829 us
+  Testing STAT...
+  native-cli   | stat            | Size: 1MB    | BW: 0.00 MB/s | IOPS: 0 | Lat: 748 us
+  Testing DOWNLOAD...
+download: s3://<BUCKET_NAME>/native/test_1MB.dat to ../../root/native-tests/downloaded.dat
+  native-cli   | download        | Size: 1MB    | BW: 0 MB/s | IOPS: 0 | Lat: 866 us
+  Cleaning up...
+
+--- Native S3 CLI: File Size = 10MB (10485760 bytes) ---
+  Creating test file...
+  Testing UPLOAD...
+upload: ../../root/native-tests/test_10MB.dat to s3://<BUCKET_NAME>/native/test_10MB.dat
+  native-cli   | upload          | Size: 10MB   | BW: .07 MB/s | IOPS: 0 | Lat: 1099 us
+  Testing STAT...
+  native-cli   | stat            | Size: 10MB   | BW: 0.00 MB/s | IOPS: 0 | Lat: 749 us
+  Testing DOWNLOAD...
+download: s3://<BUCKET_NAME>/native/test_10MB.dat to ../../root/native-tests/downloaded.dat
+  native-cli   | download        | Size: 10MB   | BW: .08 MB/s | IOPS: 0 | Lat: 947 us
+  Cleaning up...
+
+[6/6] Cleaning up mounts...
+Unmounting S3 Files...
+
+============================================================
+Benchmark Summary
+============================================================
+
+Results CSV:
+------------------------------------------------------------
+test_name,operation,file_size,bw_mbps,iops,lat_us
+s3-files,seq-read,1KB,0,747.441752,null
+s3-files,seq-write,1KB,,,0
+s3-files,seq-read,100KB,.05,521.331911,null
+s3-files,seq-write,100KB,,,0
+s3-files,seq-read,1MB,.10,106.285829,null
+s3-files,seq-write,1MB,,,0
+s3-files,seq-read,10MB,.20,20.259238,null
+s3-files,seq-write,10MB,,,0
+native-cli,upload,1KB,0,1,807
+native-cli,stat,1KB,0.00,0,846
+native-cli,download,1KB,0,0,856
+native-cli,upload,100KB,0,1,802
+native-cli,stat,100KB,0.00,0,759
+native-cli,download,100KB,0,0,887
+native-cli,upload,1MB,.01,1,829
+native-cli,stat,1MB,0.00,0,748
+native-cli,download,1MB,0,0,866
+native-cli,upload,10MB,.07,0,1099
+native-cli,stat,10MB,0.00,0,749
+native-cli,download,10MB,.08,0,947
+
+==========================================================
+S3 BENCHMARK SUMMARY REPORT
+==========================================================
+
+Test Configuration:
+- Bucket: <BUCKET_NAME>
+- Region: eu-south-2
+- File Sizes: 1KB 100KB 1MB 10MB
+- Files per Size: 10
+- S3 FUSE Enabled: false
+- S3 Files Enabled: true
+
+Results saved to: /root/benchmark-results/results.csv
+fio JSON logs saved to: /root/benchmark-results/fio_*.json
+
+Commands:
+- View CSV: cat /root/benchmark-results/results.csv
+- View summary: cat /root/benchmark-results/summary.txt
+- View full log: cat /root/benchmark-results/benchmark.log
+- View install log: cat /root/benchmark-results/install.log
+
+Download results:
+  scp -i your-key.pem root@<INSTANCE_IP>:/root/benchmark-results/* ./
+
+==========================================================
+
+Benchmark completed at 2026-05-05 08:02:37 UTC
+============================================================

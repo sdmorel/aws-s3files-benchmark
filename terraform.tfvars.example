@@ -1,0 +1,17 @@
+# Copy this file to terraform.tfvars and update with your values
+
+region             = "us-east-1"
+environment        = "benchmark"
+bucket_name        = "my-unique-s3-benchmark-bucket-12345"  # MUST be globally unique
+vpc_id             = "vpc-xxxxxxxx"
+subnet_id          = "subnet-xxxxxxxx"
+key_name           = ""  # Optional: Your EC2 key pair name
+instance_type      = "t3.medium"
+
+# Benchmark configuration
+file_sizes         = ["1KB", "100KB", "1MB", "10MB", "100MB"]
+num_files_per_size = 10
+enable_s3_fuse     = true
+
+# Security: Restrict SSH to your IP
+ssh_cidr_blocks    = ["0.0.0.0/0"]  # Change to your IP: ["YOUR_IP/32"]
