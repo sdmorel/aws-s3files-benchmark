@@ -19,7 +19,7 @@ File sizes tested: 1 KB, 100 KB, 1 MB, 10 MB, 100 MB (configurable).
 
 ## Architecture
 
-[![Architecture Diagram](https://excalidraw.com/#json=-qa40GhI-CnW5T5r3Dby6,FGL36noxGWkirThVJy9tug)](https://excalidraw.com/#json=-qa40GhI-CnW5T5r3Dby6,FGL36noxGWkirThVJy9tug)
+![Architecture Diagram](diagrams/architecture.png)
 
 ```
 ┌───────────────────────────────────────────────────────────────┐
